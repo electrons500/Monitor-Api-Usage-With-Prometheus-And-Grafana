@@ -1,0 +1,21 @@
+version: '1.0'
+
+services:
+
+  prometheus:
+    image: ubuntu/prometheus
+    container_name: myprometheus
+    ports:
+      - "30090:9090"
+    environment:
+      - TZ=	Africa/Accra
+    volumes:
+      - ./prom/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    container_name: mygrafana
+    ports:
+      - "30091:3000"
+    volumes:
+      - ./grafana-data/data:/var/lib/grafana
